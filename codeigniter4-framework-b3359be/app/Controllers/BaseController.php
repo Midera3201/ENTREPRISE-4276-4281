@@ -42,4 +42,10 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
     }
+
+    protected function setFlashMessage($type, $message)
+    {
+        session()->setFlashdata($type, $message);
+        session()->setKeepFlashdata($type);
+    }
 }

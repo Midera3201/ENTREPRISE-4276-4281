@@ -13,7 +13,7 @@ class Auth extends BaseController
         return view('auth/login');
     }
 
-    public function attempt()
+    public function doLogin()
     {
         helper(['form']);
 
