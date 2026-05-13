@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
@@ -11,6 +13,7 @@ class CreateEmployesTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type' => 'INTEGER',
+                'unsigned' => true,
                 'auto_increment' => true,
             ],
             'nom' => [
@@ -29,6 +32,7 @@ class CreateEmployesTable extends Migration
                 'type' => 'TEXT',
                 'null' => false,
             ],
+            "role TEXT NOT NULL DEFAULT 'employe' CHECK (role IN ('employe', 'rh', 'admin'))",
             'departement_id' => [
                 'type' => 'INTEGER',
                 'null' => true,
@@ -37,6 +41,7 @@ class CreateEmployesTable extends Migration
                 'type' => 'DATE',
                 'null' => true,
             ],
+            "actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0, 1))",
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -47,14 +52,11 @@ class CreateEmployesTable extends Migration
             ],
         ]);
 
-        $this->forge->addField("role TEXT NOT NULL DEFAULT 'employe' CHECK (role IN ('employe', 'rh', 'admin'))");
-        $this->forge->addField('actif INTEGER NOT NULL DEFAULT 1 CHECK (actif IN (0, 1))');
-
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('email');
         $this->forge->addKey('departement_id');
-        $this->forge->addForeignKey('departement_id', 'departements', 'id', 'SET NULL', 'CASCADE');
-        $this->forge->createTable('employes');
+        $this->forge->addForeignKey('departement_id', 'departements', 'id', 'CASCADE', 'SET NULL');
+        $this->forge->createTable('employes', true);
     }
 
     public function down(): void

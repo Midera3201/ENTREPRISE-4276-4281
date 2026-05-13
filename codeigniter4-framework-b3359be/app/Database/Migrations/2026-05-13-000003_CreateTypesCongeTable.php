@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
@@ -11,6 +13,7 @@ class CreateTypesCongeTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type' => 'INTEGER',
+                'unsigned' => true,
                 'auto_increment' => true,
             ],
             'libelle' => [
@@ -21,6 +24,7 @@ class CreateTypesCongeTable extends Migration
                 'type' => 'INTEGER',
                 'null' => false,
             ],
+            "deductible INTEGER NOT NULL DEFAULT 1 CHECK (deductible IN (0, 1))",
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -31,11 +35,9 @@ class CreateTypesCongeTable extends Migration
             ],
         ]);
 
-        $this->forge->addField('deductible INTEGER NOT NULL DEFAULT 1 CHECK (deductible IN (0, 1))');
-
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('libelle');
-        $this->forge->createTable('types_conge');
+        $this->forge->createTable('types_conge', true);
     }
 
     public function down(): void

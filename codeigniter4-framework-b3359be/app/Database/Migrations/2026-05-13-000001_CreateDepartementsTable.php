@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
@@ -11,6 +13,7 @@ class CreateDepartementsTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type' => 'INTEGER',
+                'unsigned' => true,
                 'auto_increment' => true,
             ],
             'nom' => [
@@ -33,7 +36,7 @@ class CreateDepartementsTable extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addUniqueKey('nom');
-        $this->forge->createTable('departements');
+        $this->forge->createTable('departements', true);
     }
 
     public function down(): void

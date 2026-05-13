@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
-use CodeIgniter\Database\RawSql;
 
-class CreateCongesTable extends Migration
+class CreateSoldesTable extends Migration
 {
     public function up(): void
     {
         $this->forge->addField([
             'id' => [
                 'type' => 'INTEGER',
+                'unsigned' => true,
                 'auto_increment' => true,
             ],
             'employe_id' => [
@@ -22,31 +24,12 @@ class CreateCongesTable extends Migration
                 'type' => 'INTEGER',
                 'null' => false,
             ],
-            'date_debut' => [
-                'type' => 'DATE',
+            'annee' => [
+                'type' => 'INTEGER',
                 'null' => false,
             ],
-            'date_fin' => [
-                'type' => 'DATE',
-                'null' => false,
-            ],
-            'nb_jours' => [
-                'type' => 'REAL',
-                'null' => false,
-            ],
-            'motif' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-            'commentaire_rh' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-            'date_soumission' => [
-                'type' => 'DATETIME',
-                'null' => false,
-                'default' => new RawSql('CURRENT_TIMESTAMP'),
-            ],
+            "jours_attribues REAL NOT NULL CHECK (jours_attribues >= 0)",
+            "jours_pris REAL NOT NULL DEFAULT 0 CHECK (jours_pris >= 0)",
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -57,21 +40,17 @@ class CreateCongesTable extends Migration
             ],
         ]);
 
-        $this->forge->addField("statut TEXT NOT NULL DEFAULT 'en_attente' CHECK (statut IN ('en_attente', 'approuve', 'refuse', 'annule'))");
-
         $this->forge->addKey('id', true);
+        $this->forge->addUniqueKey(['employe_id', 'type_conge_id', 'annee']);
         $this->forge->addKey('employe_id');
         $this->forge->addKey('type_conge_id');
-        $this->forge->addKey('statut');
-        $this->forge->addKey('date_debut');
-        $this->forge->addKey('date_fin');
         $this->forge->addForeignKey('employe_id', 'employes', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('type_conge_id', 'types_conge', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('conges');
+        $this->forge->createTable('soldes', true);
     }
 
     public function down(): void
     {
-        $this->forge->dropTable('conges', true);
+        $this->forge->dropTable('soldes', true);
     }
 }
