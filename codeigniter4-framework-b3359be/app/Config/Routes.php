@@ -9,7 +9,7 @@ $routes->get('/etudiants', 'Etudiants::index');
 
 $routes->get('/', 'Auth::login');
 $routes->get('login', 'Auth::login');
-$routes->post('login', 'Auth::attempt');
+$routes->post('login', 'Auth::doLogin');
 $routes->get('logout', 'Auth::logout', ['filter' => 'auth']);
 
 $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
