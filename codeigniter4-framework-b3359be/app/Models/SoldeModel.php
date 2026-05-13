@@ -14,8 +14,8 @@ class SoldeModel extends Model
         'employe_id',
         'type_conge_id',
         'annee',
-        'solde_initial',
-        'solde_restant',
+        'jours_attribues',
+        'jours_pris',
         'created_at',
         'updated_at',
     ];

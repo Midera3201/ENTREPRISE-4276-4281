@@ -11,11 +11,9 @@ class TypeCongeModel extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $allowedFields = [
-        'code',
         'libelle',
-        'description',
-        'is_paid',
-        'max_jours',
+        'jours_annuels',
+        'deductible',
         'created_at',
         'updated_at',
     ];

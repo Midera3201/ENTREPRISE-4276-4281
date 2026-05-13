@@ -25,7 +25,7 @@
                 <div class="p-3">
                     <h4 class="text-center">Menu</h4>
                     <ul class="nav flex-column">
-                        <?php $role = session()->get('role'); ?>
+                        <?php $role = session()->get('user_role'); ?>
 
                         <?php if ($role === 'employe'): ?>
                             <li class="nav-item">
