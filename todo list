@@ -1,8 +1,8 @@
         TODO LIST COMPLÈTE - PROJET TECHMADA RH (CONGÉS)
          TACHES COMMUNES (À FAIRE ENSEMBLE)
         1	[ ] Installer CodeIgniter 4 via Composer	15 min	Ensemble
-        2	[ ] Configurer .env (environment, encryption, etc.)	10 min	Ensemble
-        3	[ ] Créer structure des dossiers Views (auth/, employee/, rh/, admin/, layouts/)	10 min	Ensemble
+        2	[x] Configurer .env (environment, encryption, etc.)	10 min	Ensemble
+        3	[x] Créer structure des dossiers Views (auth/, employee/, rh/, admin/, layouts/)	10 min	Ensemble
         4	[ ] Configurer Database.php pour SQLite (voir sqlite.pdf)	10 min	Ensemble
         5	[ ] S'assurer que dossier writable/ est accessible en écriture	5 min	Ensemble
 
