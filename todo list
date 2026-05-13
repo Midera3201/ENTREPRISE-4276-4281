@@ -29,12 +29,12 @@
 
         PARTIE 3 : SEEDERS (20 min)
         #	Tâche	Temps	Statut
-        15	[ ] Créer seeder DepartementsSeeder (IT, RH, Finance, Marketing)	5 min	
-        16	[ ] Créer seeder TypesCongeSeeder (Congé annuel, Maladie, Congé spécial, Sans solde)	5 min	
-        17	[ ] Créer seeder EmployesSeeder (admin, rh, 3 employés tests)	10 min	
-        18	[ ] Créer seeder SoldesSeeder (soldes initiaux pour tous les employés)	10 min	
-        19	[ ] Créer seeder CongesSeeder (demandes de test avec différents statuts)	10 min	
-        20	[ ] Exécuter php spark db:seed DatabaseSeeder	5 min	
+        15	[X] Créer seeder DepartementsSeeder (IT, RH, Finance, Marketing)	5 min	
+        16	[x] Créer seeder TypesCongeSeeder (Congé annuel, Maladie, Congé spécial, Sans solde)	5 min	
+        17	[x] Créer seeder EmployesSeeder (admin, rh, 3 employés tests)	10 min	
+        18	[x] Créer seeder SoldesSeeder (soldes initiaux pour tous les employés)	10 min	
+        19	[x] Créer seeder CongesSeeder (demandes de test avec différents statuts)	10 min	
+        20	[x] Exécuter php spark db:seed DatabaseSeeder	5 min	
 
         PARTIE 4 : MODÈLES CI4 (30 min)
         #	Tâche	Temps	Statut
