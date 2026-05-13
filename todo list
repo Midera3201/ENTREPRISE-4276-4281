@@ -1,0 +1,167 @@
+        TODO LIST COMPLÈTE - PROJET TECHMADA RH (CONGÉS)
+         TACHES COMMUNES (À FAIRE ENSEMBLE)
+        1	[ ] Installer CodeIgniter 4 via Composer	15 min	Ensemble
+        2	[x] Configurer .env (environment, encryption, etc.)	10 min	Ensemble
+        3	[x] Créer structure des dossiers Views (auth/, employee/, rh/, admin/, layouts/)	10 min	Ensemble
+        4	[ ] Configurer Database.php pour SQLite (voir sqlite.pdf)	10 min	Ensemble
+        5	[ ] S'assurer que dossier writable/ est accessible en écriture	5 min	Ensemble
+
+         MEMBRE 1 - BACKEND + BASE DE DONNÉES + AUTH + LOGIQUE
+         PARTIE 1 : BASE DE DONNÉES SQLITE (20 min)
+        #	Tâche	Temps	Statut
+        1	[x] Créer la base rh_conges.db (fichier dans writable/)	5 min	
+        2	[x] Créer table employes (id, nom, prenom, email, password, role, departement_id, date_embauche, actif)	10 min	
+        3	[x] Créer table departements (id, nom, description)	5 min	
+        4	[x] Créer table types_conge (id, libelle, jours_annuels, deductible)	5 min	
+        5	[x] Créer table soldes (id, employe_id, type_conge_id, annee, jours_attribues, jours_pris)	10 min	
+        6	[x] Créer table conges (id, employe_id, type_conge_id, date_debut, date_fin, nb_jours, motif, statut, commentaire_rh, date_soumission)	10 min	
+        7	[x] Ajouter clés primaires, étrangères, contraintes UNIQUE, CHECK	10 min	
+        8	[x] Ajouter index (email, employe_id, statut, dates) pour performances	10 min	
+
+        PARTIE 2 : MIGRATIONS CI4 (15 min)
+        #	Tâche	Temps	Statut
+        9	[x] Créer migration CreateEmployesTable	5 min	
+        10	[x] Créer migration CreateDepartementsTable	5 min	
+        11	[x] Créer migration CreateTypesCongeTable	5 min	
+        12	[x] Créer migration CreateSoldesTable	5 min	
+        13	[x] Créer migration CreateCongesTable	5 min	
+        14	[x] Exécuter php spark migrate et vérifier	5 min	
+
+        PARTIE 3 : SEEDERS (20 min)
+        #	Tâche	Temps	Statut
+        15	[ ] Créer seeder DepartementsSeeder (IT, RH, Finance, Marketing)	5 min	
+        16	[ ] Créer seeder TypesCongeSeeder (Congé annuel, Maladie, Congé spécial, Sans solde)	5 min	
+        17	[ ] Créer seeder EmployesSeeder (admin, rh, 3 employés tests)	10 min	
+        18	[ ] Créer seeder SoldesSeeder (soldes initiaux pour tous les employés)	10 min	
+        19	[ ] Créer seeder CongesSeeder (demandes de test avec différents statuts)	10 min	
+        20	[ ] Exécuter php spark db:seed DatabaseSeeder	5 min	
+
+        PARTIE 4 : MODÈLES CI4 (30 min)
+        #	Tâche	Temps	Statut
+        21	[ ] Créer EmployeModel (findByEmail, getEmployesByDepartement, getSoldeRestant)	15 min	
+        22	[ ] Créer DepartementModel	5 min	
+        23	[ ] Créer TypeCongeModel	5 min	
+        24	[ ] Créer SoldeModel (getSolde, updateSolde, getSoldeCritique)	15 min	
+        25	[ ] Créer CongeModel (getDemandesByEmploye, getDemandesEnAttente, getHistorique)	15 min	
+
+         PARTIE 5 : AUTHENTIFICATION & SÉCURITÉ (40 min)
+        #	Tâche	Temps	Statut
+        26	[ ] Créer AuthController (login, logout, doLogin)	15 min	
+        27	[ ] Implémenter login avec password_hash() vérification	10 min	
+        28	[ ] Créer session utilisateur (id, nom, email, role)	10 min	
+        29	[ ] Créer AuthFilter (vérifier session active)	10 min	
+        30	[ ] Créer RoleFilter (vérifier rôle : employe, rh, admin)	10 min	
+        31	[ ] Configurer CSRF sur tous les formulaires POST	5 min	
+        32	[ ] Configurer routes avec filtres ( /employee/, /rh/, /admin/* )	10 min	
+
+        PARTIE 6 : LOGIQUE MÉTIER BACKEND (50 min)
+        #	Tâche	Temps	Statut
+        33	[ ] Fonction verifierSoldeAvantApprobation($employe_id, $type_conge_id, $nb_jours)	10 min	
+        34	[ ] Fonction calculerSoldeRestant($employe_id, $type_conge_id, $annee)	10 min	
+        35	[ ] Fonction deduireSoldeApresApprobation($conge_id)	10 min	
+        36	[ ] Fonction rec rediterSoldeApresAnnulation($conge_id)	10 min	
+        37	[ ] Fonction verifierChevauchement($employe_id, $date_debut, $date_fin)	10 min	
+        38	[ ] Fonction calculerNbJours($date_debut, $date_fin) (jours ouvrés ou calendaires ?)	10 min	
+        39	[ ] Fonction verifierSoldeInsuffisantMessage()	5 min	
+
+        PARTIE 7 : BACKEND ADMIN (40 min)
+        #	Tâche	Temps	Statut
+        40	[ ] Créer AdminEmployesController (CRUD employés : index, create, store, edit, update, delete)	15 min	
+        41	[ ] Créer AdminDepartementsController (CRUD départements)	10 min	
+        42	[ ] Créer AdminTypesCongeController (CRUD types de congé)	10 min	
+        43	[ ] Créer AdminSoldesController (initialiser soldes annuels, ajuster soldes)	10 min	
+        44	[ ] Créer AdminStatsController (statistiques dashboard admin)	10 min	
+
+         PARTIE 8 : BACKEND EMPLOYÉ + RH (40 min)
+        #	Tâche	Temps	Statut
+        45	[ ] Créer EmployeeController (dashboard, soumettre demande, lister demandes, annuler, profil)	15 min	
+        46	[ ] Créer RHController (lister demandes en attente, approuver, refuser, filtres, soldes equipe)	15 min	
+        47	[ ] Implémenter la logique d'approbation (vérifier solde → déduire → MAJ statut)	10 min	
+        48	[ ] Implémenter la logique de refus (commentaire optionnel, pas de déduction)	5 min
+
+         PARTIE 9 : ROUTES & FINALISATION (20 min)
+        #	Tâche	Temps	Statut
+        49	[ ] Configurer toutes les routes dans Routes.php (groupes employee, rh, admin)	10 min	
+        50	[ ] Tester toutes les requêtes SQL (phpMyAdmin ou ligne commande)	10 min	
+        51	[ ] Corriger les bugs backend	20 min	
+        52	[ ] Rédiger README (installation, migration, seed, comptes test)	10 min	
+
+       
+
+
+
+ MEMBRE 2 - FRONTEND + INTERFACES + DASHBOARD + TEMPLATE
+ PARTIE 1 : LAYOUT & TEMPLATE (30 min)
+#	Tâche	Temps	Statut
+1	[ ] Créer le template de base layouts/app.php (header, footer, navigation)	10 min	
+2	[ ] Intégrer Bootstrap 5 (CDN) + CSS personnalisé	5 min	
+3	[ ] Intégrer les polices (Playfair Display, DM Sans, DM Mono)	5 min	
+4	[ ] Créer sidebar selon rôle (employé, RH, admin)	10 min	
+5	[ ] Rendre la sidebar dynamique (afficher/masquer selon rôle)	10 min	
+
+PARTIE 2 : PAGE AUTHENTIFICATION (20 min)
+#	Tâche	Temps	Statut
+6	[ ] Créer page auth/login.php (formulaire email + mot de passe)	10 min	
+7	[ ] Afficher flashdata messages d'erreur (identifiants incorrects)	5 min	
+8	[ ] Afficher comptes de démonstration (admin, rh, employé)	5 min	
+
+ PARTIE 3 : INTERFACE EMPLOYÉ (60 min)
+#	Tâche	Temps	Statut
+9	[ ] Créer employee/dashboard.php (métriques, graphiques, soldes)	10 min	
+10	[ ] Afficher métriques (en attente, approuvées, jours restants, refusées)	5 min	
+11	[ ] Afficher barres de progression des soldes (avec couleurs)	10 min	
+12	[ ] Afficher tableau des dernières demandes	5 min	
+13	[ ] Créer employee/create.php (formulaire demande de congé)	10 min	
+14	[ ] Intégrer sélecteur type de congé (avec affichage solde dispo)	5 min	
+15	[ ] Intégrer datepicker pour date début et date fin	5 min	
+16	[ ] Afficher calcul automatique du nombre de jours (JS ou PHP)	10 min	
+17	[ ] Ajouter champ motif (textarea optionnel)	5 min	
+18	[ ] Créer employee/index.php (liste de toutes les demandes)	10 min	
+19	[ ] Tableau avec colonnes : type, dates, durée, statut, commentaire RH	5 min	
+20	[ ] Ajouter bouton "Annuler" pour demandes en attente	5 min	
+21	[ ] Créer employee/profil.php (modification nom, email, mot de passe)	10 min	
+
+ PARTIE 4 : INTERFACE RESPONSABLE RH (40 min)
+#	Tâche	Temps	Statut
+22	[ ] Créer rh/index.php (liste des demandes en attente)	10 min	
+23	[ ] Afficher pour chaque demande : employé, type, période, durée, solde dispo	5 min	
+24	[ ] Ajouter boutons "Approuver" et "Refuser"	5 min	
+25	[ ] Créer modal de refus (commentaire obligatoire ou optionnel)	10 min	
+26	[ ] Ajouter filtres (statut, département)	5 min	
+27	[ ] Créer rh/soldes.php (liste des soldes des employés de l'équipe)	10 min	
+
+ PARTIE 5 : INTERFACE ADMINISTRATEUR (40 min)
+#	Tâche	Temps	Statut
+28	[ ] Créer admin/dashboard.php (vue d'ensemble)	10 min	
+29	[ ] Afficher métriques globales (employés, demandes en attente, approuvées, départements, absents)	10 min	
+30	[ ] Afficher demandes récentes (tableau)	5 min	
+31	[ ] Afficher liste des absents aujourd'hui	5 min	
+32	[ ] Créer admin/employes.php (CRUD employés avec tableau)	15 min	
+33	[ ] Ajouter formulaire d'ajout d'employé	5 min	
+34	[ ] Ajouter boutons "Éditer" et "Désactiver"	5 min	
+35	[ ] Créer admin/departements.php (CRUD départements)	10 min	
+36	[ ] Créer admin/types_conge.php (CRUD types de congé)	10 min	
+37	[ ] Créer admin/historique.php (historique complet des demandes)	10 min	
+
+ PARTIE 6 : COMPOSANTS UI/UX (30 min)
+#	Tâche	Temps	Statut
+38	[ ] Créer badges de statut (en attente, approuvée, refusée, annulée)	10 min	
+39	[ ] Créer badges de type de congé (annuel, maladie, spécial, sans solde)	5 min	
+40	[ ] Créer flash messages Bootstrap (succès, erreur, info, warning)	10 min	
+41	[ ] Rendre le site responsive (mobile, tablette, desktop)	10 min	
+
+PARTIE 7 : STATISTIQUES & GRAPHIQUES (20 min)
+#	Tâche	Temps	Statut
+42	[ ] Intégrer Chart.js (optionnel) pour les graphiques dashboard employé	10 min	
+43	[ ] Afficher graphique évolution des congés pris	5 min	
+44	[ ] Afficher répartition des demandes par statut	5 min	
+
+PARTIE 8 : FINALISATION FRONTEND (20 min)
+#	Tâche	Temps	Statut
+45	[ ] Vérifier que toutes les pages utilisent le layout commun	5 min	
+46	[ ] Vérifier la navigation (liens actifs selon rôle)	5 min	
+47	[ ] Tester sur mobile (responsive)	5 min	
+48	[ ] Corriger les bugs d'affichage	10 min	
+
+
+  
