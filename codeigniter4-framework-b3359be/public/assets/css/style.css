@@ -41,3 +41,85 @@ h1, h2, h3, h4, h5, h6 {
 .card-body {
     padding: 15px;
 }
+
+/* Styles généraux pour la responsivité */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Sidebar pour mobile */
+.menu-burger {
+    display: none;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-burger {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        color: #fff;
+        z-index: 1000;
+    }
+
+    /* Cards en full width */
+    .card {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    /* Champs de formulaire en colonne */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Ajustement des marges */
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Sidebar réduite (icônes seules) */
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar .menu-item {
+        text-align: center;
+    }
+
+    .sidebar .menu-item span {
+        display: none;
+    }
+}
+
+/* Header boutons adaptés */
+.header .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
