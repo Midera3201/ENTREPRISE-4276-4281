@@ -1,0 +1,43 @@
+:root {
+    --forest-green: #228B22;
+    --beige: #f5f5dc;
+    --white: #ffffff;
+    --dark-gray: #333333;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--beige);
+    color: var(--dark-gray);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest-green);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.card {
+    border: 1px solid var(--forest-green);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: var(--forest-green);
+    color: var(--white);
+    padding: 10px;
+    border-bottom: 1px solid var(--dark-gray);
+}
+
+.card-body {
+    padding: 15px;
+}
