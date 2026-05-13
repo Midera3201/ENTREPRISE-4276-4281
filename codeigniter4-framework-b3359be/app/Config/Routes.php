@@ -15,8 +15,27 @@ $routes->get('logout', 'Auth::logout', ['filter' => 'auth']);
 // ---- PUBLIC ----
 $routes->get('/etudiants', 'Etudiants::index');
 $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('rh', 'Dashboard::rh', ['filter' => 'auth,role:rh']);
-$routes->get('employe', 'Dashboard::employe', ['filter' => 'auth,role:employe']);
+
+// ---- EMPLOYÉ ----
+$routes->group('employee', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'Employee\EmployeeController::dashboard');
+    $routes->get('dashboard', 'Employee\EmployeeController::dashboard');
+    $routes->get('demande/create', 'Employee\EmployeeController::createDemande');
+    $routes->post('demande/store', 'Employee\EmployeeController::storeDemande');
+    $routes->get('mes-demandes', 'Employee\EmployeeController::mesDemandes');
+    $routes->get('demande/(:num)/annuler', 'Employee\EmployeeController::annulerDemande/$1');
+    $routes->get('profil', 'Employee\EmployeeController::profil');
+});
+
+// ---- RH ----
+$routes->group('rh', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/', 'RH\RHController::demandesEnAttente');
+    $routes->get('demandes', 'RH\RHController::demandesEnAttente');
+    $routes->post('approuver/(:num)', 'RH\RHController::approuver/$1');
+    $routes->post('refuser/(:num)', 'RH\RHController::refuser/$1');
+    $routes->get('filtres', 'RH\RHController::filtres');
+    $routes->get('soldes-equipe', 'RH\RHController::soldesEquipe');
+});
 
 // ---- ADMIN (protégées par auth + rôle admin) ----
 $routes->group('admin', ['filter' => 'auth,role:admin'], function ($routes) {
