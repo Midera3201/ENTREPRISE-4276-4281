@@ -20,12 +20,12 @@
 
         PARTIE 2 : MIGRATIONS CI4 (15 min)
         #	Tâche	Temps	Statut
-        9	[ ] Créer migration CreateEmployesTable	5 min	
-        10	[ ] Créer migration CreateDepartementsTable	5 min	
-        11	[ ] Créer migration CreateTypesCongeTable	5 min	
-        12	[ ] Créer migration CreateSoldesTable	5 min	
-        13	[ ] Créer migration CreateCongesTable	5 min	
-        14	[ ] Exécuter php spark migrate et vérifier	5 min	
+        9	[x] Créer migration CreateEmployesTable	5 min	
+        10	[x] Créer migration CreateDepartementsTable	5 min	
+        11	[x] Créer migration CreateTypesCongeTable	5 min	
+        12	[x] Créer migration CreateSoldesTable	5 min	
+        13	[x] Créer migration CreateCongesTable	5 min	
+        14	[x] Exécuter php spark migrate et vérifier	5 min	
 
         PARTIE 3 : SEEDERS (20 min)
         #	Tâche	Temps	Statut
