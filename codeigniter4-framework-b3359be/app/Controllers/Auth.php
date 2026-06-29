@@ -37,14 +37,23 @@ class Auth extends BaseController
         }
 
         session()->set([
-            'user_id' => $user['id'],
+            'user_id'    => $user['id'],
             'user_email' => $user['email'],
-            'user_role' => $user['role'],
-            'user_name' => trim($user['prenom'] . ' ' . $user['nom']),
+            'user_role'  => $user['role'],
+            'user_name'  => trim($user['prenom'] . ' ' . $user['nom']),
             'is_logged_in' => true,
         ]);
 
-        return redirect()->to('/dashboard');
+        // Redirection selon le rôle
+        switch ($user['role']) {
+            case 'admin':
+                return redirect()->to('/admin');
+            case 'rh':
+                return redirect()->to('/rh/demandes');
+            case 'employe':
+            default:
+                return redirect()->to('/employee/dashboard');
+        }
     }
 
     public function logout()
